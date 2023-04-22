@@ -8,7 +8,6 @@ topics:
   - "bash"
   - "tech"
 published: true
-published_at: "2023-04-21 09:00"
 ---
 
 Linux コマンドの変数代入でよく使われる記法をチートシート風にまとめました。
@@ -114,10 +113,10 @@ echo $TEST
 20230421
 ```
 
-## ${}でコマンドを囲うパターン
+## $()でコマンドを囲うパターン
 
 ```
-TEST=${date '+%Y%m%d'}  # 今日の日付
+TEST=$(date '+%Y%m%d')  # 今日の日付
 echo $TEST
 ```
 
@@ -136,8 +135,8 @@ echo $TEST
 囲われた変数はダブルクォーテーションでさらに囲う
 
 ```
-TEST_A=20230421
-TEST_B=`echo "$TEST_A" | awk '{print substr($0, 5)}'`   # 日付から月日を取り出す
+TEST_A=$(date '+%Y%m%d')  # 今日の日付
+TEST_B=`echo "$TEST_A" | awk '{print substr($0, 5)}'`   # 今日の日付から月日を取り出す
 echo $TEST_B
 ```
 
@@ -147,13 +146,13 @@ echo $TEST_B
 0421
 ```
 
-## ${}でコマンドを囲うパターン
+## $()でコマンドを囲うパターン
 
-変数も同様に${}で囲う
+変数は${}で囲う
 
 ```
-TEST_A=20230421
-TEST_B=${echo ${TEST_A} | awk '{print substr($0, 5)}'}  # 日付から月日を取り出す
+TEST_A=$(date '+%Y%m%d')  # 今日の日付
+TEST_B=$(echo ${TEST_A} | awk '{print substr($0, 5)}')  # 今日の日付から月日を取り出す
 echo $TEST_B
 ```
 
